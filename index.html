@@ -1,0 +1,688 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>For the Teachers Who Make a Difference</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;1,500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy:#12182b;
+    --navy-2:#1b2340;
+    --cream:#f6f2ea;
+    --beige:#ece4d6;
+    --gold:#c9a869;
+    --ink:#e9e6df;
+    --muted:#9aa1b8;
+    --radius:14px;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--navy);
+    color:var(--ink);
+    font-family:'Inter',sans-serif;
+    line-height:1.55;
+  }
+  h1,h2,h3{font-family:'Playfair Display',serif; margin:0; font-weight:600;}
+  a{color:inherit;}
+  .wrap{max-width:900px; margin:0 auto; padding:0 24px;}
+
+  /* NAV */
+  nav{
+    position:sticky; top:0; z-index:20;
+    background:rgba(18,24,43,0.85);
+    backdrop-filter:blur(8px);
+    border-bottom:1px solid rgba(255,255,255,0.06);
+  }
+  nav .wrap{display:flex; align-items:center; justify-content:space-between; padding:16px 24px;}
+  .brand{font-family:'Playfair Display',serif; font-size:19px; letter-spacing:0.2px;}
+  .navlinks{display:flex; gap:28px; font-size:14px; color:var(--muted);}
+  .navlinks a{text-decoration:none; transition:color .2s;}
+  .navlinks a:hover{color:var(--gold);}
+
+  /* HERO */
+  header.hero{padding:100px 24px 90px; text-align:center; position:relative;}
+  .hero h1{font-size:clamp(32px,5vw,54px); max-width:760px; margin:0 auto 22px; line-height:1.15;}
+  .hero p{max-width:520px; margin:0 auto 36px; color:var(--muted); font-size:16.5px;}
+  .btnrow{display:flex; gap:16px; justify-content:center; flex-wrap:wrap;}
+  .btn{
+    display:inline-block; padding:14px 30px; border-radius:8px;
+    font-size:14.5px; font-weight:500; text-decoration:none; cursor:pointer;
+    border:1px solid transparent; transition:transform .15s ease, background .2s, border-color .2s;
+  }
+  .btn:active{transform:scale(0.98);}
+  .btn-primary{background:var(--gold); color:#1a1608;}
+  .btn-primary:hover{background:#d9bb84;}
+  .btn-secondary{border-color:rgba(255,255,255,0.2); color:var(--ink); background:transparent;}
+  .btn-secondary:hover{border-color:var(--gold); color:var(--gold);}
+
+  .letter-motif{
+    width:180px; height:120px; margin:56px auto 0; position:relative;
+  }
+  .letter-motif svg{width:100%; height:100%;}
+
+  /* SECTIONS */
+  section{padding:80px 24px;}
+  .light{background:var(--cream); color:#20202a;}
+  .light .muted{color:#6b6a63;}
+  .muted{color:var(--muted);}
+  section h2{font-size:clamp(24px,3.4vw,32px); margin-bottom:18px;}
+  .section-lead{max-width:640px;}
+
+  .about-points{list-style:none; padding:0; margin:28px 0 0; display:grid; gap:14px; max-width:560px;}
+  .about-points li{padding-left:22px; position:relative; font-size:15.5px;}
+  .about-points li::before{
+    content:"—"; position:absolute; left:0; color:var(--gold);
+  }
+
+  .admin-card{
+    margin-top:28px; max-width:420px; background:var(--navy-2);
+    border:1px solid rgba(255,255,255,0.08); border-radius:var(--radius);
+    padding:26px 28px; display:flex; gap:18px; align-items:center;
+  }
+  .admin-avatar{
+    width:52px; height:52px; border-radius:50%; flex-shrink:0;
+    background:linear-gradient(160deg,#2a3358,#161c33);
+    display:flex; align-items:center; justify-content:center;
+    border:1px solid rgba(201,168,105,0.35);
+  }
+  .admin-name{font-weight:600; font-size:15px;}
+  .admin-role{color:var(--muted); font-size:13px; margin-top:2px;}
+
+  .steps{display:grid; gap:0; margin-top:36px; border-top:1px solid rgba(255,255,255,0.08);}
+  .step{
+    display:grid; grid-template-columns:56px 1fr; gap:18px;
+    padding:24px 0; border-bottom:1px solid rgba(255,255,255,0.08);
+  }
+  .step .num{font-family:'Playfair Display',serif; color:var(--gold); font-size:20px;}
+  .step h3{font-size:16.5px; margin-bottom:6px;}
+  .step p{margin:0; color:var(--muted); font-size:14.5px;}
+
+  /* FORM */
+  .form-card{
+    background:var(--cream); color:#20202a; border-radius:20px;
+    padding:44px; max-width:760px; margin:0 auto;
+  }
+  .form-card h2{color:#20202a;}
+  .form-grid{display:grid; grid-template-columns:1fr 1fr; gap:20px; margin-top:30px;}
+  .field{display:flex; flex-direction:column; gap:8px;}
+  .field.full{grid-column:1 / -1;}
+  .field label{font-size:13px; font-weight:500; color:#4a4940;}
+  .field .optional{color:#9c9787; font-weight:400;}
+  .field input, .field select, .field textarea{
+    font-family:'Inter',sans-serif; font-size:14.5px; padding:12px 14px;
+    border:1px solid #d8d1c1; border-radius:8px; background:#fff; color:#20202a;
+    outline:none; transition:border-color .15s;
+  }
+  .field input:focus, .field select:focus, .field textarea:focus{border-color:var(--gold);}
+  .field textarea{resize:vertical; min-height:170px; font-family:'Playfair Display',serif; font-size:16px; line-height:1.6;}
+  .err{color:#a3402c; font-size:12.5px; min-height:16px;}
+  .field.invalid input, .field.invalid select, .field.invalid textarea{border-color:#a3402c;}
+
+  .upload-box{
+    border:1.5px dashed #cfc7b3; border-radius:10px; padding:20px;
+    display:flex; align-items:center; gap:16px; background:#fbf9f4;
+  }
+  .upload-box input[type=file]{font-size:13px;}
+  #imgPreview{max-width:90px; max-height:90px; border-radius:6px; display:none; object-fit:cover;}
+
+  .submit-row{margin-top:34px; display:flex; justify-content:flex-end;}
+  .submit-row .btn-primary{padding:15px 38px; font-size:15px; border:none; cursor:pointer;}
+  .submit-row .btn-primary:disabled{opacity:0.6; cursor:not-allowed;}
+
+  /* SUCCESS */
+  #successScreen{
+    display:none; position:fixed; inset:0; z-index:100;
+    background:rgba(18,24,43,0.97); align-items:center; justify-content:center;
+    text-align:center; padding:24px;
+  }
+  #successScreen .box{max-width:440px;}
+  .check{
+    width:64px; height:64px; margin:0 auto 26px; border-radius:50%;
+    border:1.5px solid var(--gold); display:flex; align-items:center; justify-content:center;
+    animation:pop .5s ease;
+  }
+  @keyframes pop{from{transform:scale(0.6); opacity:0;} to{transform:scale(1); opacity:1;}}
+  #successScreen h2{font-size:28px; margin-bottom:14px;}
+  #successScreen p{color:var(--muted); margin-bottom:32px;}
+
+  footer{padding:36px 24px; text-align:center; color:var(--muted); font-size:13px;}
+
+  /* ADMIN BUTTON */
+  #adminBtn{
+    position:fixed; left:18px; bottom:18px; z-index:30;
+    background:rgba(255,255,255,0.06); color:var(--muted);
+    border:1px solid rgba(255,255,255,0.12); border-radius:20px;
+    font-size:12px; padding:8px 16px; cursor:pointer; backdrop-filter:blur(6px);
+    transition:color .2s, border-color .2s;
+  }
+  #adminBtn:hover{color:var(--gold); border-color:var(--gold);}
+
+  /* MODAL */
+  .modal-bg{
+    display:none; position:fixed; inset:0; z-index:200; background:rgba(10,12,22,0.7);
+    align-items:center; justify-content:center; padding:20px;
+  }
+  .modal{
+    background:var(--navy-2); border:1px solid rgba(255,255,255,0.1); border-radius:16px;
+    padding:32px; max-width:340px; width:100%;
+  }
+  .modal h3{font-size:18px; margin-bottom:16px;}
+  .modal input{
+    width:100%; padding:12px 14px; border-radius:8px; border:1px solid rgba(255,255,255,0.15);
+    background:#0e1324; color:var(--ink); font-size:14.5px; margin-bottom:10px; outline:none;
+  }
+  .modal input:focus{border-color:var(--gold);}
+  .modal-err{color:#e08b73; font-size:12.5px; min-height:16px;}
+  .modal-actions{display:flex; gap:10px; margin-top:8px;}
+  .modal .btn{flex:1; text-align:center; font-size:13.5px; padding:11px;}
+
+  /* ADMIN DASHBOARD */
+  #adminDash{
+    display:none; position:fixed; inset:0; z-index:150; background:var(--navy);
+    overflow-y:auto;
+  }
+  .dash-top{
+    position:sticky; top:0; background:var(--navy); border-bottom:1px solid rgba(255,255,255,0.08);
+    padding:20px 24px; display:flex; align-items:center; justify-content:space-between; z-index:5;
+  }
+  .dash-top h2{font-size:20px;}
+  .dash-close{background:none; border:1px solid rgba(255,255,255,0.15); color:var(--muted); border-radius:8px; padding:8px 16px; cursor:pointer; font-size:13px;}
+  .dash-close:hover{color:var(--ink);}
+  .dash-body{max-width:1000px; margin:0 auto; padding:28px 24px 80px;}
+  .dash-stats{display:flex; gap:14px; margin-bottom:24px; flex-wrap:wrap;}
+  .stat{background:var(--navy-2); border:1px solid rgba(255,255,255,0.08); border-radius:12px; padding:16px 22px;}
+  .stat .n{font-family:'Playfair Display',serif; font-size:26px; color:var(--gold);}
+  .stat .l{font-size:12.5px; color:var(--muted); margin-top:2px;}
+  .dash-filters{display:flex; gap:12px; flex-wrap:wrap; margin-bottom:26px;}
+  .dash-filters input, .dash-filters select{
+    background:var(--navy-2); border:1px solid rgba(255,255,255,0.12); color:var(--ink);
+    padding:10px 12px; border-radius:8px; font-size:13.5px; outline:none;
+  }
+  .dash-filters input:focus, .dash-filters select:focus{border-color:var(--gold);}
+  #subList{display:grid; gap:12px;}
+  .sub-card{
+    background:var(--navy-2); border:1px solid rgba(255,255,255,0.08); border-radius:12px;
+    padding:18px 20px; cursor:pointer; transition:border-color .15s;
+  }
+  .sub-card:hover{border-color:var(--gold);}
+  .sub-top{display:flex; justify-content:space-between; gap:10px; flex-wrap:wrap;}
+  .sub-name{font-weight:600; font-size:15px;}
+  .sub-meta{font-size:12.5px; color:var(--muted); margin-top:3px;}
+  .sub-preview{font-size:13.5px; color:#c4c8da; margin-top:10px; overflow:hidden; text-overflow:ellipsis; display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical;}
+  .sub-actions{display:flex; gap:8px; margin-top:12px;}
+  .icon-btn{background:none; border:1px solid rgba(255,255,255,0.15); color:var(--muted); border-radius:6px; padding:5px 10px; font-size:12px; cursor:pointer;}
+  .icon-btn:hover{color:#e08b73; border-color:#e08b73;}
+  .empty-state{color:var(--muted); text-align:center; padding:60px 20px; font-size:14.5px;}
+
+  /* Detail modal */
+  #detailModal .modal{max-width:560px; text-align:left;}
+  #detailModal .letter-body{
+    font-family:'Playfair Display',serif; font-size:16px; line-height:1.75; color:var(--ink);
+    white-space:pre-wrap; margin:16px 0; max-height:300px; overflow-y:auto; padding-right:4px;
+  }
+  #detailImg{max-width:100%; border-radius:8px; margin-top:12px; display:none;}
+  .detail-meta{font-size:13px; color:var(--muted); line-height:1.8;}
+
+  @media(max-width:640px){
+    .form-grid{grid-template-columns:1fr;}
+    .navlinks{gap:16px; font-size:13px;}
+    .form-card{padding:28px 22px;}
+    section{padding:60px 20px;}
+    .dash-filters{flex-direction:column;}
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <div class="brand">Teacher's Day</div>
+    <div class="navlinks">
+      <a href="#home">Home</a>
+      <a href="#how">How It Works</a>
+      <a href="#write">Write a Letter</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero" id="home">
+  <div class="wrap">
+    <h1>For the Teachers Who Make a Difference.</h1>
+    <p>An appreciation space created for students to share their gratitude, memories, and heartfelt wishes with the teachers who inspire them every day.</p>
+    <div class="btnrow">
+      <a href="#write" class="btn btn-primary">Write a Letter</a>
+      <a href="#how" class="btn btn-secondary">How It Works</a>
+    </div>
+    <div class="letter-motif">
+      <svg viewBox="0 0 200 130" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect x="10" y="20" width="180" height="100" rx="6" stroke="#c9a869" stroke-width="1.3" fill="#161c33"/>
+        <path d="M14 26 L100 82 L186 26" stroke="#c9a869" stroke-width="1.3" fill="none"/>
+        <line x1="60" y1="118" x2="140" y2="118" stroke="#c9a869" stroke-width="1" opacity="0.5"/>
+      </svg>
+    </div>
+  </div>
+</header>
+
+<section class="light">
+  <div class="wrap">
+    <h2>Why We Created This</h2>
+    <p class="section-lead muted">This space was created for Teacher's Day so students can put their appreciation into words — not as an assignment, but as a genuine thank-you.</p>
+    <ul class="about-points">
+      <li>Teachers do far more than teach a subject.</li>
+      <li>They guide, encourage, and quietly shape how we think.</li>
+      <li>This gives every student a small place to say thank you, properly.</li>
+    </ul>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2>A Note From the Admin</h2>
+    <div class="admin-card">
+      <div class="admin-avatar">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M12 2l2.4 6.5L21 9l-5.2 4.3L17.5 20 12 16.3 6.5 20l1.7-6.7L3 9l6.6-.5L12 2z" stroke="#c9a869" stroke-width="1.2" fill="none"/></svg>
+      </div>
+      <div>
+        <div class="admin-name">ADMIN</div>
+        <div class="admin-role">This site was built and organised by a student for our school's Teacher's Day celebration — a small effort to help everyone say thank you.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="light" id="how">
+  <div class="wrap">
+    <h2>How It Works</h2>
+    <p class="section-lead muted">Four simple steps, start to finish.</p>
+    <div class="steps">
+      <div class="step">
+        <div class="num">01</div>
+        <div><h3>Enter Your Details</h3><p>Fill in your class, section, name, teacher's name and subject.</p></div>
+      </div>
+      <div class="step">
+        <div class="num">02</div>
+        <div><h3>Write Your Letter</h3><p>Write a genuine Teacher's Day message for your teacher.</p></div>
+      </div>
+      <div class="step">
+        <div class="num">03</div>
+        <div><h3>Add an Image (Optional)</h3><p>Attach an image if you'd like to include one with your letter.</p></div>
+      </div>
+      <div class="step">
+        <div class="num">04</div>
+        <div><h3>Submit</h3><p>Review everything, then send your appreciation.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="write">
+  <div class="wrap">
+    <div class="form-card">
+      <h2>Write Your Teacher's Day Letter</h2>
+      <p class="muted" style="margin-top:6px;">A few details, then your words.</p>
+      <form id="letterForm" novalidate>
+        <div class="form-grid">
+          <div class="field" id="f-class">
+            <label>Class</label>
+            <select name="student_class">
+              <option value="">Select class</option>
+              <option>6</option><option>7</option><option>8</option><option>9</option>
+              <option>10</option><option>11</option><option>12</option>
+            </select>
+            <div class="err"></div>
+          </div>
+          <div class="field" id="f-section">
+            <label>Section</label>
+            <input type="text" name="section" placeholder="e.g. A" maxlength="10" />
+            <div class="err"></div>
+          </div>
+          <div class="field" id="f-student">
+            <label>Student Name</label>
+            <input type="text" name="student_name" placeholder="Your full name" />
+            <div class="err"></div>
+          </div>
+          <div class="field" id="f-teacher">
+            <label>Teacher Name</label>
+            <input type="text" name="teacher_name" placeholder="Teacher's name" />
+            <div class="err"></div>
+          </div>
+          <div class="field full" id="f-subject">
+            <label>Subject Name</label>
+            <input type="text" name="subject" placeholder="e.g. Mathematics" />
+            <div class="err"></div>
+          </div>
+          <div class="field full" id="f-letter">
+            <label>Your Letter</label>
+            <textarea name="letter" placeholder="Write something your teacher will remember…"></textarea>
+            <div class="err"></div>
+          </div>
+          <div class="field full">
+            <label>Add an Image <span class="optional">— Optional</span></label>
+            <div class="upload-box">
+              <input type="file" id="imgInput" accept="image/*" />
+              <img id="imgPreview" alt="preview" />
+            </div>
+          </div>
+        </div>
+        <div class="submit-row">
+          <button type="submit" class="btn btn-primary" id="submitBtn">Send My Letter</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
+
+<footer>Made with gratitude, for Teacher's Day.</footer>
+
+<div id="successScreen">
+  <div class="box">
+    <div class="check">
+      <svg width="26" height="26" viewBox="0 0 24 24" fill="none"><path d="M4 12.5l5 5L20 6.5" stroke="#c9a869" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </div>
+    <h2>Your Letter Has Been Sent.</h2>
+    <p>Thank you for taking a moment to appreciate your teacher. Your words may be small, but they can mean a lot.</p>
+    <button class="btn btn-primary" id="writeAnotherBtn">Write Another Letter</button>
+  </div>
+</div>
+
+<button id="adminBtn">Admin</button>
+
+<div class="modal-bg" id="loginModalBg">
+  <div class="modal">
+    <h3>Admin Login</h3>
+    <input type="password" id="adminPass" placeholder="Password" />
+    <div class="modal-err" id="loginErr"></div>
+    <div class="modal-actions">
+      <button class="btn btn-secondary" id="loginCancel">Cancel</button>
+      <button class="btn btn-primary" id="loginSubmit">Log In</button>
+    </div>
+  </div>
+</div>
+
+<div id="adminDash">
+  <div class="dash-top">
+    <h2>Submissions</h2>
+    <button class="dash-close" id="dashClose">Close</button>
+  </div>
+  <div class="dash-body">
+    <div class="dash-stats">
+      <div class="stat"><div class="n" id="statTotal">0</div><div class="l">Total submissions</div></div>
+      <div class="stat"><div class="n" id="statShown">0</div><div class="l">Matching filters</div></div>
+    </div>
+    <div class="dash-filters">
+      <input type="text" id="searchInput" placeholder="Search student, teacher, subject…" style="flex:1; min-width:200px;" />
+      <select id="filterClass"><option value="">All classes</option></select>
+      <select id="filterTeacher"><option value="">All teachers</option></select>
+    </div>
+    <div id="subList"></div>
+  </div>
+</div>
+
+<div class="modal-bg" id="detailModal">
+  <div class="modal">
+    <h3 id="detailTitle">Letter</h3>
+    <div class="detail-meta" id="detailMeta"></div>
+    <div class="letter-body" id="detailBody"></div>
+    <img id="detailImg" alt="attached" />
+    <div class="modal-actions">
+      <button class="btn btn-secondary" id="detailCloseBtn">Close</button>
+      <button class="btn btn-primary" id="detailDeleteBtn" style="background:#a3402c;">Delete</button>
+    </div>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+const SUPABASE_URL = "https://icooztaasrksvsgduqhf.supabase.co";
+const SUPABASE_KEY = "sb_publishable_fctf1pW5aIJE31mnvZXq4w_JGZdHut6";
+const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+const TABLE = "letters";
+const ADMIN_PASSWORD = "0729";
+
+// ---------- FORM ----------
+const form = document.getElementById('letterForm');
+const imgInput = document.getElementById('imgInput');
+const imgPreview = document.getElementById('imgPreview');
+const submitBtn = document.getElementById('submitBtn');
+let selectedImageDataUrl = null;
+
+imgInput.addEventListener('change', () => {
+  const file = imgInput.files[0];
+  if (!file) { selectedImageDataUrl = null; imgPreview.style.display='none'; return; }
+  const reader = new FileReader();
+  reader.onload = e => {
+    selectedImageDataUrl = e.target.result;
+    imgPreview.src = selectedImageDataUrl;
+    imgPreview.style.display = 'block';
+  };
+  reader.readAsDataURL(file);
+});
+
+function setErr(fieldId, msg){
+  const el = document.getElementById(fieldId);
+  el.classList.toggle('invalid', !!msg);
+  el.querySelector('.err').textContent = msg || '';
+}
+
+function validate(data){
+  let ok = true;
+  const checks = [
+    ['f-class', data.student_class, 'Please select a class.'],
+    ['f-section', data.section.trim(), 'Please enter a section.'],
+    ['f-student', data.student_name.trim(), 'Please enter your name.'],
+    ['f-teacher', data.teacher_name.trim(), "Please enter your teacher's name."],
+    ['f-subject', data.subject.trim(), 'Please enter a subject.'],
+    ['f-letter', data.letter.trim(), 'Please write your letter.'],
+  ];
+  checks.forEach(([id, val, msg]) => {
+    if (!val) { setErr(id, msg); ok = false; }
+    else setErr(id, '');
+  });
+  if (data.letter.trim() && data.letter.trim().length < 10){
+    setErr('f-letter', 'Your letter feels a little short — say a bit more.');
+    ok = false;
+  }
+  return ok;
+}
+
+form.addEventListener('submit', async (e) => {
+  e.preventDefault();
+  const fd = new FormData(form);
+  const data = Object.fromEntries(fd.entries());
+  if (!validate(data)) return;
+
+  submitBtn.disabled = true;
+  submitBtn.textContent = 'Sending…';
+
+  const payload = {
+    student_class: data.student_class,
+    section: data.section.trim(),
+    student_name: data.student_name.trim(),
+    teacher_name: data.teacher_name.trim(),
+    subject: data.subject.trim(),
+    letter: data.letter.trim(),
+    image_data: selectedImageDataUrl || null,
+  };
+
+  const { error } = await supabase.from(TABLE).insert(payload);
+
+  submitBtn.disabled = false;
+  submitBtn.textContent = 'Send My Letter';
+
+  if (error) {
+    setErr('f-letter', 'Something went wrong sending your letter. Please try again.');
+    console.error(error);
+    return;
+  }
+
+  form.reset();
+  imgPreview.style.display = 'none';
+  selectedImageDataUrl = null;
+  document.getElementById('successScreen').style.display = 'flex';
+});
+
+document.getElementById('writeAnotherBtn').addEventListener('click', () => {
+  document.getElementById('successScreen').style.display = 'none';
+  window.location.hash = '#write';
+});
+
+// ---------- ADMIN LOGIN ----------
+const adminBtn = document.getElementById('adminBtn');
+const loginBg = document.getElementById('loginModalBg');
+const adminPass = document.getElementById('adminPass');
+const loginErr = document.getElementById('loginErr');
+
+adminBtn.addEventListener('click', () => {
+  loginBg.style.display = 'flex';
+  adminPass.value = '';
+  loginErr.textContent = '';
+  setTimeout(()=>adminPass.focus(), 50);
+});
+document.getElementById('loginCancel').addEventListener('click', () => loginBg.style.display = 'none');
+loginBg.addEventListener('click', (e) => { if (e.target === loginBg) loginBg.style.display = 'none'; });
+
+function tryLogin(){
+  if (adminPass.value === ADMIN_PASSWORD){
+    loginBg.style.display = 'none';
+    openDashboard();
+  } else {
+    loginErr.textContent = 'Incorrect password.';
+  }
+}
+document.getElementById('loginSubmit').addEventListener('click', tryLogin);
+adminPass.addEventListener('keydown', e => { if (e.key === 'Enter') tryLogin(); });
+
+// ---------- ADMIN DASHBOARD ----------
+const dash = document.getElementById('adminDash');
+const subList = document.getElementById('subList');
+const searchInput = document.getElementById('searchInput');
+const filterClass = document.getElementById('filterClass');
+const filterTeacher = document.getElementById('filterTeacher');
+let allSubs = [];
+
+document.getElementById('dashClose').addEventListener('click', () => dash.style.display = 'none');
+
+async function openDashboard(){
+  dash.style.display = 'block';
+  await loadSubs();
+}
+
+async function loadSubs(){
+  subList.innerHTML = '<div class="empty-state">Loading…</div>';
+  const { data, error } = await supabase.from(TABLE).select('*').order('created_at', { ascending: false });
+  if (error){
+    subList.innerHTML = '<div class="empty-state">Could not load submissions.</div>';
+    console.error(error);
+    return;
+  }
+  allSubs = data || [];
+  populateFilterOptions();
+  renderList();
+}
+
+function populateFilterOptions(){
+  const classes = [...new Set(allSubs.map(s => s.student_class).filter(Boolean))].sort();
+  const teachers = [...new Set(allSubs.map(s => s.teacher_name).filter(Boolean))].sort();
+  filterClass.innerHTML = '<option value="">All classes</option>' + classes.map(c => <option value="${c}">Class ${c}</option>).join('');
+  filterTeacher.innerHTML = '<option value="">All teachers</option>' + teachers.map(t => <option value="${t}">${escapeHtml(t)}</option>).join('');
+}
+
+function escapeHtml(str){
+  const d = document.createElement('div');
+  d.textContent = str || '';
+  return d.innerHTML;
+}
+
+function renderList(){
+  const q = searchInput.value.trim().toLowerCase();
+  const c = filterClass.value;
+  const t = filterTeacher.value;
+
+  const filtered = allSubs.filter(s => {
+    if (c && s.student_class !== c) return false;
+    if (t && s.teacher_name !== t) return false;
+    if (q){
+      const hay = ${s.student_name} ${s.teacher_name} ${s.subject}.toLowerCase();
+      if (!hay.includes(q)) return false;
+    }
+    return true;
+  });
+
+  document.getElementById('statTotal').textContent = allSubs.length;
+  document.getElementById('statShown').textContent = filtered.length;
+
+  if (filtered.length === 0){
+    subList.innerHTML = '<div class="empty-state">No submissions match.</div>';
+    return;
+  }
+
+  subList.innerHTML = filtered.map(s => {
+    const date = s.created_at ? new Date(s.created_at).toLocaleString() : '';
+    return `
+      <div class="sub-card" data-id="${s.id}">
+        <div class="sub-top">
+          <div class="sub-name">${escapeHtml(s.student_name)}</div>
+          <div class="sub-meta">${escapeHtml(date)}</div>
+        </div>
+        <div class="sub-meta">Class ${escapeHtml(s.student_class)}-${escapeHtml(s.section)} · ${escapeHtml(s.teacher_name)} · ${escapeHtml(s.subject)}</div>
+        <div class="sub-preview">${escapeHtml(s.letter)}</div>
+      </div>`;
+  }).join('');
+
+  subList.querySelectorAll('.sub-card').forEach(card => {
+    card.addEventListener('click', () => openDetail(card.dataset.id));
+  });
+}
+
+searchInput.addEventListener('input', renderList);
+filterClass.addEventListener('change', renderList);
+filterTeacher.addEventListener('change', renderList);
+
+// ---------- DETAIL MODAL ----------
+const detailModal = document.getElementById('detailModal');
+let currentDetailId = null;
+
+function openDetail(id){
+  const s = allSubs.find(x => String(x.id) === String(id));
+  if (!s) return;
+  currentDetailId = s.id;
+  document.getElementById('detailTitle').textContent = Letter from ${s.student_name};
+  const date = s.created_at ? new Date(s.created_at).toLocaleString() : '';
+  document.getElementById('detailMeta').innerHTML = `
+    Class ${escapeHtml(s.student_class)}-${escapeHtml(s.section)}<br/>
+    To: ${escapeHtml(s.teacher_name)} (${escapeHtml(s.subject)})<br/>
+    Submitted: ${escapeHtml(date)}
+  `;
+  document.getElementById('detailBody').textContent = s.letter;
+  const img = document.getElementById('detailImg');
+  if (s.image_data){
+    img.src = s.image_data;
+    img.style.display = 'block';
+  } else {
+    img.style.display = 'none';
+  }
+  detailModal.style.display = 'flex';
+}
+
+document.getElementById('detailCloseBtn').addEventListener('click', () => detailModal.style.display = 'none');
+detailModal.addEventListener('click', (e) => { if (e.target === detailModal) detailModal.style.display = 'none'; });
+
+document.getElementById('detailDeleteBtn').addEventListener('click', async () => {
+  if (!currentDetailId) return;
+  if (!confirm('Delete this submission? This cannot be undone.')) return;
+  const { error } = await supabase.from(TABLE).delete().eq('id', currentDetailId);
+  if (error){
+    alert('Could not delete. Please try again.');
+    console.error(error);
+    return;
+  }
+  detailModal.style.display = 'none';
+  await loadSubs();
+});
+</script>
+</body>
+</html>
